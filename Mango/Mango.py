@@ -128,7 +128,7 @@ class window_about(QWidget):  # 增加说明页面(About)
 		widg2.setLayout(blay2)
 
 		widg3 = QWidget()
-		lbl1 = QLabel('Version 0.0.1', self)
+		lbl1 = QLabel('Version 0.0.2', self)
 		blay3 = QHBoxLayout()
 		blay3.setContentsMargins(0, 0, 0, 0)
 		blay3.addStretch()
@@ -591,7 +591,7 @@ class window_update(QWidget):  # 增加更新页面（Check for Updates）
 
 	def initUI(self):  # 说明页面内信息
 
-		self.lbl = QLabel('Current Version: v0.0.1', self)
+		self.lbl = QLabel('Current Version: v0.0.2', self)
 		self.lbl.move(30, 45)
 
 		lbl0 = QLabel('Download Update:', self)
@@ -714,12 +714,15 @@ class window3(QWidget):  # 主窗口
 					subprocess.call(['osascript', '-e', quitcmd])
 					time.sleep(1)
 					reopencmd = """
-						tell application "%s"
-							launch
-							set visible of windows to false
-						end tell""" % mail_name
+						tell application "System Events"
+							set appPath to POSIX path of (path to application "%s")
+							do shell script "open -g -a " & quoted form of appPath & " --hide"
+						end tell
+						tell application "System Events" to tell process "%s"
+							click menu item "Get All New Mail" of menu "Mailbox" of menu bar item "Mailbox" of menu bar 1
+						end tell""" % (mail_name, mail_name)
 					subprocess.call(['osascript', '-e', reopencmd])
-					time.sleep(20)
+					time.sleep(10)
 				resp = applescript.tell.app("System Events", """
 				tell application "%s"
 					set unreadMessages to messages of inbox whose read status is false
@@ -1014,6 +1017,10 @@ class window4(QWidget):  # Customization settings
 			self.checkBox0.setChecked(True)
 		if restartY == '0':
 			self.checkBox0.setChecked(False)
+
+		w2.checkupdate()
+		if w2.lbl2.text() != 'No Intrenet' and 'ready' in w2.lbl2.text():
+			w2.show()
 
 		self.show()
 		self.setFocus()
