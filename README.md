@@ -16,7 +16,7 @@ Mango is a macOS menu bar app to check the unread emails periodically and set a 
 
 况且，有时候你的工作非常 HARD，来件量非常大，而你只需要关注其中一部分最重要的软件。怎么办呢？总不能一直盯着收件箱吧？
 
-![2](https://i.imgur.com/XcgcyIR.gif)
+![2](https://github.com/Ryan-the-hito/Mango/blob/main/pics/CleanShot%202023-10-31%20at%2009.59.35-trimmed%20-%2001.gif?raw=true)
 
 但是 macOS 自带的邮件和 Spark 好像都没有强提醒的功能，也没有针对某一个邮件地址的强提醒功能，所以做一个这样的软件很合理。
 
@@ -73,9 +73,10 @@ Mango 没有主界面，出常规项之外只有设置界面。
 
 这是 Mango 最核心的功能。首先，当一个特定邮件地址发来邮件且被 Mango 发现后，Mango 会弹出 Notification（会在右上角显示）。接着，Mango 会使用 Shortcuts 来设置两个提醒项，一个是闹钟，另一个是提醒。闹钟是 macOS13 上才有的功能。Mango 会设置一个 5 分钟后的闹钟，提醒用户查看。同样地，此时 Mango 还会同时设置一个 5 分钟后的提醒，届时用户不仅可以在 Mac 上看到提醒，还可以在 iPhone、iPad 以及 AppleWatch 上同步收到提示。因此，如果用户此刻并没有在电脑前，Mango 也能通过跨平台同步消息提醒到用户。当然，这一切都有赖于 Shortcuts 脚本，用户也可以在给定脚本中自定义闹钟提醒的间隔时长，以及有何种方式呈现提醒。如果修改了脚本的名称，记得在设置的最后一项填入修改后的名称，保存即可。
 
-![7](https://i.imgur.com/2BSv0nr.png)
-
-![10](https://i.imgur.com/xzkFFaY.png)
+<p align="center">
+  <img src="https://i.imgur.com/2BSv0nr.png" width=300 />
+  <img src="https://i.imgur.com/xzkFFaY.png" width=300 />
+</p>
 
 ### 隐私保护，开源软件，本地运行
 
