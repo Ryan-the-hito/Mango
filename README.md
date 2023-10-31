@@ -2,8 +2,6 @@
 
 ![Y5Xt1FR](https://i.imgur.com/UoJvo2c.png)
 
-<a href="https://twitter.com/ryanswindows">Twitter</a> | <a href="https://weibo.com/ryanthehitos">Weibo</a></p>
-
 Mango is a macOS menu bar app to check the unread emails periodically and set a reminder and an alarm for those coming from target addresses. Mango 是一个任务栏软件，可以帮你给原生的 Mail 软件增加特定未读邮件强提醒的软件。
 
 ## 解决问题
@@ -100,11 +98,12 @@ Mango 没有主界面，出常规项之外只有设置界面。
 
 ### 打开时
 
-1. 如果出现打不开的情况，说软件损坏，请查一下搜索引擎，这是一个非常容易解决的问题。因为没有苹果的证书，所以它会显示这样的提示。要绕过检查只需在终端里输入“sudo xattr -r -d com.apple.quarantine /Applications/Mango.app”，按提示输入开机密码即可。
-2. 确保软件已经可以打开，去 System Settings 里面，在 Privacy & Security 下面的 Accessibility，把 Mango 添加进来。
-3. 打开会跳出这样的提示，请允许。
+1. 先安装快捷指令脚本：[点我](https://www.icloud.com/shortcuts/0a19b8ad08c5415c94d98672de472ec4)。（必需步骤，如果之后需要改指令的名称，请记得在设置里最后一栏修改保存）
+2. 如果出现打不开的情况，说软件损坏，这其实是一个非常普遍也非常容易解决的问题。因为本软件没有苹果的证书，所以它会有这样的提示。要绕过检查，只需在终端里输入“sudo xattr -r -d com.apple.quarantine /Applications/Mango.app”，按提示输入开机密码即可。
+3. 确保软件已经可以打开，去 System Settings 里面，在 Privacy & Security 下面的 Accessibility，把 Mango 添加进来。
+4. 打开会跳出这样的提示，请允许。
    ![8](https://i.imgur.com/CaiJ0Zd.png)
-4. 先在 Menu Bar 里找到 Mango 的图标，点击，进入 Settings，按照上面的内容自定义设置、保存。然后再回到第一项，点击“Switch on Mango!”，即可开始使用。
+5. 先在 Menu Bar 里找到 Mango 的图标，点击，进入 Settings，按照上面的内容自定义设置、保存。然后再回到第一项，点击“Switch on Mango!”，即可开始使用。
 
 ### 更新时
 
