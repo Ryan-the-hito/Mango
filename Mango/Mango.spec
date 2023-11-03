@@ -3,7 +3,7 @@
 
 block_cipher = None
 
-__version__ = '0.0.2'
+__version__ = '0.0.3'
 
 info_plist = {
     'LSUIElement': True,
@@ -14,7 +14,7 @@ a = Analysis(
     ['Mango.py'],
     pathex=['/Users/ryanshenefield/Downloads/Mango.py'],
     binaries=[],
-    datas=[('mango-logo.icns', '.'), ('mango-dsk.icns', '.'), ('mango-logo.png', '.'), ('wechat50.png', '.'), ('wechat20.png', '.'), ('wechat10.png', '.'), ('wechat5.png', '.'), ('alipay50.png', '.'), ('alipay20.png', '.'), ('alipay10.png', '.'), ('alipay5.png', '.'), ('Shortcuts_NAME.txt', '.'), ('SetTime.txt', '.'), ('Restart.txt', '.'), ('Mail_NAME.txt', '.'), ('CertAction.txt', '.'), ('AlertShortcuts.txt', '.')],
+    datas=[('mango-logo.icns', '.'), ('mango-dsk.icns', '.'), ('mango-logo.png', '.'), ('wechat50.png', '.'), ('wechat20.png', '.'), ('wechat10.png', '.'), ('wechat5.png', '.'), ('alipay50.png', '.'), ('alipay20.png', '.'), ('alipay10.png', '.'), ('alipay5.png', '.'), ('Shortcuts_NAME.txt', '.'), ('SetTime.txt', '.'), ('Restart.txt', '.'), ('Mail_NAME.txt', '.'), ('CertAction.txt', '.'), ('AlertShortcuts.txt', '.'), ('ReLa.txt', '.')],
     hiddenimports=['subprocess', 'AppKit'],
     hookspath=[],
     hooksconfig={},
