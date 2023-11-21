@@ -1,4 +1,4 @@
-# 🥭Mango: Emergent Email Alarmer
+# 🥭Mango: Emergent Email Alarm
 
 ![Y5Xt1FR](https://i.imgur.com/UoJvo2c.png)
 
