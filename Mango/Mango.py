@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/local/bin/python3.11
 # -*- coding: utf-8 -*-
 # -*- encoding:UTF-8 -*-
 # coding=utf-8
@@ -127,7 +127,7 @@ class window_about(QWidget):  # 增加说明页面(About)
 		widg2.setLayout(blay2)
 
 		widg3 = QWidget()
-		lbl1 = QLabel('Version 0.0.3', self)
+		lbl1 = QLabel('Version 1.0.0', self)
 		blay3 = QHBoxLayout()
 		blay3.setContentsMargins(0, 0, 0, 0)
 		blay3.addStretch()
@@ -233,7 +233,7 @@ class window_about(QWidget):  # 增加说明页面(About)
 		widg9.setLayout(blay9)
 
 		widg10 = QWidget()
-		lbl6 = QLabel('© 2023 Ryan-the-hito. All rights reserved.', self)
+		lbl6 = QLabel('© 2023-2024 Ryan-the-hito. All rights reserved.', self)
 		blay10 = QHBoxLayout()
 		blay10.setContentsMargins(0, 0, 0, 0)
 		blay10.addStretch()
@@ -590,7 +590,7 @@ class window_update(QWidget):  # 增加更新页面（Check for Updates）
 
 	def initUI(self):  # 说明页面内信息
 
-		self.lbl = QLabel('Current Version: v0.0.3', self)
+		self.lbl = QLabel('Current Version: v1.0.0', self)
 		self.lbl.move(30, 45)
 
 		lbl0 = QLabel('Download Update:', self)
@@ -709,10 +709,10 @@ class window3(QWidget):  # 主窗口
 			restartY = codecs.open(BasePath + "Restart.txt", 'r', encoding='utf-8').read()
 			mail_name = codecs.open(BasePath + 'Mail_NAME.txt', 'r', encoding='utf-8').read()
 			shortcuts_name = codecs.open(BasePath + 'Shortcuts_NAME.txt', 'r', encoding='utf-8').read()
-			signal.signal(signal.SIGALRM, self.timeout_handler)
-			signal.alarm(60)
-			try:
-				if restartY == '1':
+			if restartY == '1':
+				signal.signal(signal.SIGALRM, self.timeout_handler)
+				signal.alarm(30)
+				try:
 					quitcmd = '''tell application "%s" to quit''' % mail_name
 					subprocess.call(['osascript', '-e', quitcmd])
 					time.sleep(1)
@@ -726,6 +726,26 @@ class window3(QWidget):  # 主窗口
 						end tell""" % (mail_name, mail_name)
 					subprocess.call(['osascript', '-e', reopencmd])
 					time.sleep(10)
+				except TimeoutException:
+					CMD = '''
+					on run argv
+						display notification (item 2 of argv) with title (item 1 of argv)
+					end run'''
+					self.notify(CMD, "Mango: Emergent Email Alarm",
+								f"There seems to be an error. Mango will try again in the next run.")
+				except Exception as e:
+					with open(BasePath + 'errorfile.txt', 'w', encoding='utf-8') as f0:
+						f0.write('Restarting problem: ' + str(e))
+					CMD = '''
+					on run argv
+						display notification (item 2 of argv) with title (item 1 of argv)
+					end run'''
+					self.notify(CMD, "Mango: Emergent Email Alarm",
+								f"Error. Please try again.")
+				signal.alarm(0)
+			signal.signal(signal.SIGALRM, self.timeout_handler)
+			signal.alarm(60)
+			try:
 				resp = applescript.tell.app("System Events", """
 				tell application "%s"
 					set unreadMessages to messages of inbox whose read status is false
@@ -767,7 +787,7 @@ class window3(QWidget):  # 主窗口
 									on run argv
 										display notification (item 2 of argv) with title (item 1 of argv)
 									end run'''
-									self.notify(CMD, "Mango: Emergent Email Alarmer",
+									self.notify(CMD, "Mango: Emergent Email Alarm",
 												f"You have an unread email from " + unreadmail_list[i] + '.')
 						UseShortcut = codecs.open(BasePath + 'CertAction.txt', 'r', encoding='utf-8').read()
 						if UseShortcut == '1' and FetchedStatus == 1:
@@ -782,9 +802,17 @@ class window3(QWidget):  # 主窗口
 				on run argv
 					display notification (item 2 of argv) with title (item 1 of argv)
 				end run'''
-				self.notify(CMD, "Mango: Emergent Email Alarmer",
-							f"There seems to be an error. Please try again.")
-			except Exception:
+				self.notify(CMD, "Mango: Emergent Email Alarm",
+							f"There seems to be an error. Mango will try again in the next run.")
+			except Exception as e:
+				with open(BasePath + 'errorfile.txt', 'w', encoding='utf-8') as f0:
+					f0.write(str(e))
+				CMD = '''
+				on run argv
+					display notification (item 2 of argv) with title (item 1 of argv)
+				end run'''
+				self.notify(CMD, "Mango: Emergent Email Alarm",
+							f"Error. Please try again.")
 				quitcmd = '''tell application "%s" to quit''' % shortcuts_name
 				subprocess.call(['osascript', '-e', quitcmd])
 			signal.alarm(0)
